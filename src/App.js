@@ -1,4 +1,6 @@
+import { render } from "@testing-library/react";
 import React, { useState, useEffect, useRef } from "react";
+import NameList from "./NameList";
 
 export default function App() {
   const [name, setName] = useState('');
@@ -8,12 +10,10 @@ export default function App() {
     prevName.current = name;
   },[name])
 
-
-  return (
-    <>
-    <input value={name} onChange={e => setName(e.target.value)} />
-    <div>My name is {name} and it used to be {prevName.current}</div>
-    
-    </>
-  )
-}
+  render(prevName.current) {
+    return (
+      <div>
+        <NameList />
+      </div>
+    );
+  }}
